@@ -1,157 +1,121 @@
-# HRMS (Human Resource Management System)
+ HRMS (Human Resource Management System)
 
-##  Mevcut Diller / Available Languages
-[🇹🇷 Türkçe](#türkçe) | [🇬🇧 English](#english)
+A modern, scalable Human Resource Management System built using Spring Boot, designed for managing job advertisements, job applications, employers, and candidates through a clean and well-structured REST API.
 
----
-## Demo Video
+ Project Overview
 
+HRMS is a backend-focused application following N-Layer Architecture and REST API standards.
+It includes:
 
+DTO Layer
 
-## Türkçe 
+Request–Response Pattern
 
-### Proje Açıklaması
-HRMS (İnsan Kaynakları Yönetim Sistemi) projesi, iş ilanlarının, iş başvurularının, işveren ve iş arayan bilgilerinin yönetildiği, Spring Boot tabanlı bir web servis uygulamasıdır.  
-Proje, REST API mimarisi ile geliştirilmiş olup, **DTO**, **Request-Response Pattern**, **Validation** ve **Global Exception Handling** gibi modern yazılım geliştirme tekniklerini içermektedir.
+Global Exception Handling
 
----
+Validation (Jakarta Validation)
 
-### Özellikler
-- **Şehir Yönetimi**: Şehir ekleme, listeleme.
-- **İş Pozisyonu Yönetimi**: Yeni iş pozisyonu ekleme, listeleme.
-- **İşveren Yönetimi**: İşveren kaydı, listeleme.
-- **Aday Yönetimi**: Aday kaydı, listeleme.
-- **İş İlanı Yönetimi**: İş ilanı ekleme, listeleme, filtreleme.
-- **İş Başvurusu Yönetimi**: Adayların iş ilanlarına başvuru yapabilmesi.
-- **Hata Yönetimi**: `@ControllerAdvice` ile global exception handling.
-- **Validasyon**: `@NotBlank`, `@Size` gibi anotasyonlarla alan doğrulama.
+Service–Repository architecture
 
----
+Clean JSON responses using Result wrappers
 
-###  Kullanılan Teknolojiler
-- **Java 17**
-- **Spring Boot**
-- **Spring Data JPA (Hibernate)**
-- **PostgreSQL**
-- **Lombok**
-- **Validation API (Jakarta Validation)**
-- **Jackson**
-- **Postman (API Testleri için)**
+ Features
 
----
+ City Management – Add & list cities
 
-###  Proje Katmanları
-- **Entity**: Veritabanı tablolarını temsil eden sınıflar.
-- **DTO**: Kullanıcıya döndürülecek veri transfer objeleri.
-- **Request**: Kullanıcıdan alınacak verileri temsil eden sınıflar.
-- **Service**: İş mantığı katmanı.
-- **Repository (DAO)**: Veritabanı erişim katmanı.
-- **Controller**: API uç noktalarının bulunduğu katman.
-- **Core Utilities**: `Result`, `DataResult`, `SuccessResult`, `ErrorResult` gibi ortak dönüş yapıları.
+ Job Position Management – Add & list job roles
 
-**Result Yapısı:**
-- `Result`: İşlem sonucu (başarılı / başarısız) ve mesaj döner.
-- `DataResult<T>`: İşlem sonucu + veri döner.
-- `SuccessResult`, `ErrorResult`: Başarılı veya hatalı işlem durumları için hazır sınıflar.
+ Employer Management – Register & list employers
 
----
+ Candidate Management – Register & list candidates
 
-###  Örnek API Endpoint'leri
-| HTTP | Endpoint | Açıklama |
-|------|----------|----------|
-| POST | `/api/employers/register` | Yeni işveren kaydı |
-| GET  | `/api/employers/getAll` | Tüm işverenleri listele |
-| POST | `/api/candidateController/register` | Yeni aday kaydı |
-| GET  | `/api/candidateController/getAll` | Tüm adayları listele |
-| POST | `/api/jobAdvertisements/add` | Yeni iş ilanı ekle |
-| GET  | `/api/jobAdvertisements/getAll` | Tüm iş ilanlarını listele |
-| POST | `/api/jobApplications/apply` | Adayın ilana başvurması |
+ Job Advertisement Management – Add, list, filter job ads
 
----
+ Job Application System – Candidates apply to job ads
 
-###  Örnek JSON İstekleri
+ Global Exception Handling (@ControllerAdvice)
 
-**İşveren Kayıt:**
-```json
-{
-    "name": "Aysu",
-    "lastName": "Ay",
-    "nationalId": "12345678901",
-    "birthDate": 2000,
-    "email": "aysu@example.com",
-    "password": "password123",
-    "confirmPassword": "password123"
-}
+Validation using @NotBlank, @Size, @Email, etc.
+
+ Technologies Used
+
+Java 17
+
+Spring Boot
+
+Spring Data JPA (Hibernate)
+
+PostgreSQL
+
+Lombok
+
+Jakarta Validation
+
+Jackson
+
+Postman (API Testing)
+
+ Project Architecture
+
+Entity Layer → Database tables
+
+DTO Layer → Response objects
+
+Request Layer → Incoming request bodies
+
+Service Layer → Business logic
+
+Repository Layer → Database access
+
+Controller Layer → REST endpoints
+
+Core Utilities → Result, DataResult, SuccessResult, ErrorResult, Exceptions
+```
+📁 Project Structure
+hrms/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/hrms/
+│   │   │       ├── controller/
+│   │   │       ├── dto/
+│   │   │       ├── request/
+│   │   │       ├── entity/
+│   │   │       ├── service/
+│   │   │       ├── repository/
+│   │   │       ├── core/
+│   │   │       │   ├── utilities/
+│   │   │       │   └── exceptions/
+│   │   │       └── HrmsApplication.java
+│   │   ├── resources/
+│   │   │   ├── application.properties
+│   │   │   ├── data.sql
+│   │   │   └── schema.sql
+│   ├── test/
+│   │   └── java/
+├── .gitignore
+├── pom.xml
+└── README.md
 ```
 
-## English 
-
-
-# HRMS (Human Resource Management System)
-
-##  Project Description
-HRMS (Human Resource Management System) is a Spring Boot-based web service application designed for managing job postings, applications, employer and candidate information.  
-It follows the REST API architecture and implements **DTO**, **Request-Response Pattern**, **Validation**, and **Global Exception Handling**.
-
----
-
-##  Features
-- **City Management**: Add and list cities.
-- **Job Position Management**: Add and list job positions.
-- **Employer Management**: Register and list employers.
-- **Candidate Management**: Register and list job seekers.
-- **Job Advertisement Management**: Add, list, and filter job ads.
-- **Job Application Management**: Allow candidates to apply for job ads.
-- **Error Handling**: Global exception handling with `@ControllerAdvice`.
-- **Validation**: Field validation with annotations like `@NotBlank`, `@Size`.
-
----
-
-##  Technologies Used
-- **Java 17**
-- **Spring Boot**
-- **Spring Data JPA (Hibernate)**
-- **PostgreSQL**
-- **Lombok**
-- **Validation API (Jakarta Validation)**
-- **Jackson**
-- **Postman** for API testing
-
----
-
-##  Project Layers
-- **Entity**: Represents database tables.
-- **DTO**: Data Transfer Objects for API responses.
-- **Request**: Classes for incoming API data.
-- **Service**: Business logic layer.
-- **Repository (DAO)**: Database access layer.
-- **Controller**: REST API endpoints.
-- **Core Utilities**: Common response classes like `Result`, `DataResult`, `SuccessResult`, `ErrorResult`.
-
-**Result Structure:**
-- `Result`: Returns success/failure status and a message.
-- `DataResult<T>`: Returns status + data.
-- `SuccessResult`, `ErrorResult`: Ready-made classes for success/error cases.
-
----
-
-##  Sample API Endpoints
-| HTTP | Endpoint | Description |
-|------|----------|-------------|
-| POST | `/api/employers/register` | Register a new employer |
-| GET  | `/api/employers/getAll` | Get all employers |
-| POST | `/api/candidateController/register` | Register a new candidate |
-| GET  | `/api/candidateController/getAll` | Get all candidates |
-| POST | `/api/jobAdvertisements/add` | Add a new job advertisement |
-| GET  | `/api/jobAdvertisements/getAll` | Get all job advertisements |
-| POST | `/api/jobApplications/apply` | Apply for a job advertisement |
-
----
-
-##  Sample JSON Requests
-
-**Employer Registration:**
-```json
+ API Endpoints
+Employer APIs
+Method	Endpoint	Description
+POST	/api/employers/register	Register a new employer
+GET	/api/employers/getAll	Get all employers
+Candidate APIs
+Method	Endpoint	Description
+POST	/api/candidates/register	Register a new candidate
+GET	/api/candidates/getAll	Get all candidates
+Job Advertisement APIs
+Method	Endpoint	Description
+POST	/api/jobAdvertisements/add	Add a job advertisement
+GET	/api/jobAdvertisements/getAll	List all job advertisements
+Job Application APIs
+Method	Endpoint	Description
+POST	/api/jobApplications/apply	Apply to a job ad
+ Sample JSON Requests
+ Employer Registration
 {
   "companyName": "Tech Solutions Ltd.",
   "companyWebPage": "https://techsolutions.com",
@@ -160,17 +124,15 @@ It follows the REST API architecture and implements **DTO**, **Request-Response 
   "password": "password123",
   "confirmPassword": "password123"
 }
-```
-**Candidate Registration:**
-```json
+
+ Candidate Registration
 {
-    "name": "Aysu",
-    "lastName": "Ay",
-    "nationalId": "12345678901",
-    "birthDate": 2000,
-    "email": "aysu@example.com",
-    "password": "password123",
-    "confirmPassword": "password123"
+  "name": "Aysu",
+  "lastName": "Ay",
+  "nationalId": "12345678901",
+  "birthDate": 2000,
+  "email": "aysu@example.com",
+  "password": "password123",
+  "confirmPassword": "password123"
 }
 
-```
